@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Done Culture</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f6f8;
+    color: #222;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #ddd;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #777;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #333;
+}
+
+.hero {
+    background: #222;
+    color: white;
+    padding: 65px 7%;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 46px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #ddd;
+    max-width: 700px;
+}
+
+.hero button {
+    margin-top: 25px;
+}
+
+.container {
+    width: 86%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 45px 0;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.primary-btn {
+    background: #222;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 8px;
+}
+
+.secondary-btn {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 11px 18px;
+    border-radius: 8px;
+}
+
+.done-btn {
+    background: #e8f5e9;
+    color: #176b31;
+    padding: 10px 15px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.stat {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: #777;
+    margin-top: 5px;
+}
+
+.challenge {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.challenge-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.challenge h3 {
+    margin: 12px 0;
+    font-size: 22px;
+}
+
+.challenge-description {
+    color: #555;
+    line-height: 1.6;
+}
+
+.author {
+    color: #888;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.open-status {
+    background: #fff3cd;
+    color: #805b00;
+}
+
+.done-status {
+    background: #dff4e4;
+    color: #176b31;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.solutions {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.solutions h4 {
+    margin-bottom: 15px;
+}
+
+.solution {
+    background: #f7f7f8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.solution strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.solution p {
+    line-height: 1.5;
+}
+
+.form-box {
+    display: none;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.form-box h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.reply-form {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+    background: #f7f7f8;
+    border-radius: 8px;
+}
+
+.reply-form textarea {
+    background: white;
+}
+
+.empty {
+    background: white;
+    border: 1px dashed #bbb;
+    padding: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: #777;
+}
+
+footer {
+    margin-top: 40px;
+    background: #222;
+    color: #ddd;
+    text-align: center;
+    padding: 30px;
+}
+
+@media(max-width: 700px) {
+    nav {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .challenge-top {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Done <span>Culture</span></div>
+
+    <nav>
+        <a href="#challenges">Challenges</a>
+        <a href="#about">How It Works</a>
+    </nav>
+</header>
+
+
+<section class="hero">
+    <div class="hero-content">
+
+        <h1>Every Challenge Can Become a Solution.</h1>
+
+        <p>
+            Share workplace challenges, collaborate with colleagues,
+            propose solutions and turn great ideas into positive change.
+        </p>
+
+        <button class="primary-btn" onclick="showChallengeForm()">
+            + Post a Challenge
+        </button>
+
+    </div>
+</section>
+
+
+<main class="container">
+
+<section id="about">
+
+    <div class="section-title">
+        <h2>How Done Culture Works</h2>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Post your challenge</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Staff propose solutions</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">✓</div>
+            <div class="stat-label">Mark it Done</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div id="challengeForm" class="form-box">
+
+    <h2>Post a New Challenge</h2>
+
+    <label>Your Name</label>
+    <input
+        id="employeeName"
+        type="text"
+        placeholder="Enter your name"
+    >
+
+    <label>Challenge Title</label>
+    <input
+        id="challengeTitle"
+        type="text"
+        placeholder="Example: How can we improve internal communication?"
+    >
+
+    <label>Describe the Challenge</label>
+    <textarea
+        id="challengeDescription"
+        placeholder="Explain the problem and what you would like to improve..."
+    ></textarea>
+
+    <div class="form-buttons">
+
+        <button class="primary-btn" onclick="addChallenge()">
+            Submit Challenge
+        </button>
+
+        <button class="secondary-btn" onclick="hideChallengeForm()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<section id="challenges">
+
+    <div class="section-title">
+
+        <h2>Staff Challenges</h2>
+
+        <button class="primary-btn" onclick="showChallengeForm()">
+            + Post Challenge
+        </button>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <div id="totalChallenges" class="stat-number">0</div>
+            <div class="stat-label">Total Challenges</div>
+        </div>
+
+        <div class="stat">
+            <div id="openChallenges" class="stat-number">0</div>
+            <div class="stat-label">Open Challenges</div>
+        </div>
+
+        <div class="stat">
+            <div id="doneChallenges" class="stat-number">0</div>
+            <div class="stat-label">Done</div>
+        </div>
+
+    </div>
+
+
+    <div id="challengeList"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+    Done Culture — From Challenge to Solution, Together.
+</footer>
+
+
+<script>
+
+let challenges =
+    JSON.parse(localStorage.getItem("doneCultureChallenges")) || [];
+
+
+function saveChallenges() {
+
+    localStorage.setItem(
+        "doneCultureChallenges",
+        JSON.stringify(challenges)
+    );
+
+}
+
+
+function showChallengeForm() {
+
+    document.getElementById("challengeForm").style.display = "block";
+
+    document.getElementById("challengeForm").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+function hideChallengeForm() {
+
+    document.getElementById("challengeForm").style.display = "none";
+
+}
+
+
+function addChallenge() {
+
+    const name =
+        document.getElementById("employeeName").value.trim();
+
+    const title =
+        document.getElementById("challengeTitle").value.trim();
+
+    const description =
+        document.getElementById("challengeDescription").value.trim();
+
+
+    if (!name || !title || !description) {
+
+        alert("Please complete all fields.");
+
+        return;
+    }
+
+
+    const challenge = {
+
+        id: Date.now(),
+
+        name: name,
+
+        title: title,
+
+        description: description,
+
+        status: "Open",
+
+        solutions: []
+
+    };
+
+
+    challenges.unshift(challenge);
+
+    saveChallenges();
+
+    document.getElementById("employeeName").value = "";
+    document.getElementById("challengeTitle").value = "";
+    document.getElementById("challengeDescription").value = "";
+
+    hideChallengeForm();
+
+    renderChallenges();
+
+}
+
+
+function toggleReply(id) {
+
+    const form =
+        document.getElementById("reply-" + id);
+
+    if (form.style.display === "block") {
+
+        form.style.display = "none";
+
+    } else {
+
+        form.style.display = "block";
+
+    }
+
+}
+
+
+function addSolution(id) {
+
+    const nameInput =
+        document.getElementById("replyName-" + id);
+
+    const solutionInput =
+        document.getElementById("solution-" + id);
+
+
+    const name = nameInput.value.trim();
+
+    const text = solutionInput.value.trim();
+
+
+    if (!name || !text) {
+
+        alert("Please enter your name and solution.");
+
+        return;
+    }
+
+
+    const challenge =
+        challenges.find(c => c.id === id);
+
+
+    challenge.solutions.push({
+
+        name: name,
+
+        text: text
+
+    });
+
+
+    saveChallenges();
+
+    renderChallenges();
+
+}
+
+
+function markDone(id) {
+
+    const challenge =
+        challenges.find(c => c.id === id);
+
+    challenge.status = "Done";
+
+    saveChallenges();
+
+    renderChallenges();
+
+}
+
+
+function renderChallenges() {
+
+    const list =
+        document.getElementById("challengeList");
+
+
+    document.getElementById("totalChallenges").textContent =
+        challenges.length;
+
+
+    document.getElementById("openChallenges").textContent =
+        challenges.filter(c => c.status === "Open").length;
+
+
+    document.getElementById("doneChallenges").textContent =
+        challenges.filter(c => c.status === "Done").length;
+
+
+    if (challenges.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+                No challenges yet.
+                Be the first employee to post a challenge.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML = challenges.map(challenge => {
+
+        const solutionsHTML =
+            challenge.solutions.length > 0
+
+            ? challenge.solutions.map(solution => `
+                <div class="solution">
+                    <strong>${escapeHTML(solution.name)}</strong>
+                    <p>${escapeHTML(solution.text)}</p>
+                </div>
+            `).join("")
+
+            : "<p style='color:#888;'>No solutions yet. Share your idea!</p>";
+
+
+        return `
+
+        <div class="challenge">
+
+            <div class="challenge-top">
+
+                <div>
+
+                    <span class="status ${
+                        challenge.status === "Done"
+                        ? "done-status"
+                        : "open-status"
+                    }">
+
+                        ${challenge.status}
+
+                    </span>
+
+
+                    <h3>
+                        ${escapeHTML(challenge.title)}
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <p class="challenge-description">
+
+                ${escapeHTML(challenge.description)}
+
+            </p>
+
+
+            <div class="author">
+
+                Posted by ${escapeHTML(challenge.name)}
+
+            </div>
+
+
+            <div class="actions">
+
+                ${
+                    challenge.status !== "Done"
+
+                    ? `
+
+                    <button
+                        class="secondary-btn"
+                        onclick="toggleReply(${challenge.id})"
+                    >
+                        💬 Submit a Solution
+                    </button>
+
+
+                    <button
+                        class="done-btn"
+                        onclick="markDone(${challenge.id})"
+                    >
+                        ✓ Mark as Done
+                    </button>
+
+                    `
+
+                    : `
+                    <span class="done-status status">
+                        ✓ Challenge Solved
+                    </span>
+                    `
+                }
+
+            </div>
+
+
+            <div
+                id="reply-${challenge.id}"
+                class="reply-form"
+            >
+
+                <label>Your Name</label>
+
+                <input
+                    id="replyName-${challenge.id}"
+                    placeholder="Enter your name"
+                >
+
+
+                <label>Your Solution</label>
+
+                <textarea
+                    id="solution-${challenge.id}"
+                    placeholder="Explain your suggested solution..."
+                ></textarea>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="addSolution(${challenge.id})"
+                >
+                    Submit Solution
+                </button>
+
+            </div>
+
+
+            <div class="solutions">
+
+                <h4>
+                    Staff Solutions (${challenge.solutions.length})
+                </h4>
+
+                ${solutionsHTML}
+
+            </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+renderChallenges();
+
+</script>
+
+</body>
+</html>
